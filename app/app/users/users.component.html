@@ -1,0 +1,52 @@
+<h3>Welcome to users page</h3>
+<table class="table table-striped" style="width:70%;">
+    <tr>
+        <td><b>Username</b></td>
+        <td><b>First name</b></td>
+        <td><b>Last name</b></td>
+        <td><b>Actions</b></td>
+    </tr>
+    <tr *ngFor="let user of users; let i=index">
+        <td>{{user.username}}</td>
+        <td>{{user.firstname}}</td>
+        <td>{{user.lastname}}</td>
+        <td>
+            <button class="btn btn-sm btn-primary">Edit</button>
+            <button (click)="delete(i)" class="btn btn-sm btn-primary">Delete {{i}}</button>
+        </td>
+    </tr>
+</table>
+<div class="row">
+    <form>
+        <div class="col-md-4">
+            <div class="col-md-4">
+                <div style="margin-top: 7px;" class="row">Username</div>
+                <div style="margin-top: 14px;" class="row">First name</div>
+                <div style="margin-top: 14px;" class="row">Last name</div>
+            </div>
+            <div class="col-md-4">
+                <div class="row"><input class="form-control" type="text" name="username" [(ngModel)]="user.username"/>
+                </div>
+                <div class="row"><input class="form-control" type="text" name="firstname" [(ngModel)]="user.firstname"/>
+                </div>
+                <div class="row"><input class="form-control" type="text" name="lastname" [(ngModel)]="user.lastname"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-4">
+                <div style="margin-top: 7px;" class="row">Password</div>
+                <div style="margin-top: 14px;" class="row">Phone</div>
+                <div style="margin-top: 14px;" class="row">Date of birth</div>
+            </div>
+            <div class="col-md-6">
+                <div class="row"><input class="form-control" type="password" name="password"
+                                        [(ngModel)]="user.password"/></div>
+                <div class="row"><input class="form-control" type="text" name="phone" [(ngModel)]="user.phone"/></div>
+                <div class="row"><input class="form-control" type="datetime-local" name="dateofbirth"
+                                        [(ngModel)]="user.dateOfBirth"/></div>
+            </div>
+            <button class="btn btn-primary" (click)="addUser()">ADD</button>
+        </div>
+    </form>
+</div>
