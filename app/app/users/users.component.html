@@ -1,52 +1,50 @@
-<h3>Welcome to users page</h3>
-<table class="table table-striped" style="width:70%;">
-    <tr>
-        <td><b>Username</b></td>
-        <td><b>First name</b></td>
-        <td><b>Last name</b></td>
-        <td><b>Actions</b></td>
-    </tr>
-    <tr *ngFor="let user of users; let i=index">
-        <td>{{user.username}}</td>
-        <td>{{user.firstname}}</td>
-        <td>{{user.lastname}}</td>
-        <td>
-            <button class="btn btn-sm btn-primary">Edit</button>
-            <button (click)="delete(i)" class="btn btn-sm btn-primary">Delete {{i}}</button>
-        </td>
-    </tr>
-</table>
-<div class="row">
-    <form>
-        <div class="col-md-4">
-            <div class="col-md-4">
-                <div style="margin-top: 7px;" class="row">Username</div>
-                <div style="margin-top: 14px;" class="row">First name</div>
-                <div style="margin-top: 14px;" class="row">Last name</div>
-            </div>
-            <div class="col-md-4">
-                <div class="row"><input class="form-control" type="text" name="username" [(ngModel)]="user.username"/>
-                </div>
-                <div class="row"><input class="form-control" type="text" name="firstname" [(ngModel)]="user.firstname"/>
-                </div>
-                <div class="row"><input class="form-control" type="text" name="lastname" [(ngModel)]="user.lastname"/>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="col-md-4">
-                <div style="margin-top: 7px;" class="row">Password</div>
-                <div style="margin-top: 14px;" class="row">Phone</div>
-                <div style="margin-top: 14px;" class="row">Date of birth</div>
-            </div>
-            <div class="col-md-6">
-                <div class="row"><input class="form-control" type="password" name="password"
-                                        [(ngModel)]="user.password"/></div>
-                <div class="row"><input class="form-control" type="text" name="phone" [(ngModel)]="user.phone"/></div>
-                <div class="row"><input class="form-control" type="datetime-local" name="dateofbirth"
-                                        [(ngModel)]="user.dateOfBirth"/></div>
-            </div>
-            <button class="btn btn-primary" (click)="addUser()">ADD</button>
-        </div>
-    </form>
+<div class="container">
+    <table style="margin-left:auto; margin-right:auto;margin-top:40px;">
+        <tr>
+            <td class="td-cost"><input class="form-control" type="text" placeholder="name"></td>
+            <td class="td-cost"><input class="form-control" type="text" placeholder="value"></td>
+            <td class="td-cost">
+                <select class="form-control" (change)="open(this.value);">
+                <option value="3">Category</option>
+                <option value="2">Category</option>
+                <option value="1">
+                    <span>dsfsdfds</span>
+                    <!--<button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">New category</button>-->
+                    <!--<div class="modal" id="modal-1">-->
+                        <!--<div class="modal-dialog">-->
+                            <!--<div class="modal-content">-->
+                                <!--<div class="modal-header">-->
+                                    <!--<button class="button" type="close" data-dismiss="modal">&times;</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </option>
+            </select>
+            </td>
+            <td class="td-cost"><input class="form-control" type="text" placeholder="details"></td>
+            <td><button class="btn btn-md btn-primary">Add</button></td>
+        </tr>
+
+    </table>
+
+    <table class="table table-striped" style="width:70%; margin-left:auto; margin-right:auto;margin-top:20px;">
+        <tr>
+            <td><b>Name</b></td>
+            <td><b>Category</b></td>
+            <td><b>Value</b></td>
+            <td><b>Details</b></td>
+            <td><b>Actions</b></td>
+        </tr>
+        <tr *ngFor="let user of users; let i=index">
+            <td>{{user.username}}</td>
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>This is an ordinary cost..</td>
+            <td>
+                <button class="btn btn-sm btn-primary">Edit</button>
+                <button (click)="delete(i)" class="btn btn-sm btn-primary">Delete {{i}}</button>
+            </td>
+        </tr>
+    </table>
 </div>

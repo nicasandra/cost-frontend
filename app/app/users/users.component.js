@@ -27,6 +27,9 @@ var UsersComponent = (function () {
     UsersComponent.prototype.addUser = function () {
         this.users.push(new User_1.User(null, this.user.username, this.user.firstname, this.user.lastname, null, null, null));
     };
+    UsersComponent.prototype.open = function (value) {
+        alert(value);
+    };
     return UsersComponent;
 }());
 UsersComponent = __decorate([

@@ -29,6 +29,7 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             router_1.RouterModule.forRoot([
                 { path: 'home', component: home_component_1.HomeComponent },
+                { path: '', component: home_component_1.HomeComponent },
                 { path: 'users', component: users_component_1.UsersComponent }
             ])
         ],

@@ -25,5 +25,9 @@ export class UsersComponent {
         this.users.push(new User(null, this.user.username, this.user.firstname, this.user.lastname, null, null, null));
     }
 
+    open(value){
+        alert(value);
+    }
+
 
 }

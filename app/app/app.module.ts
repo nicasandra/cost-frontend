@@ -15,7 +15,8 @@ import {FormsModule} from "@angular/forms";
         BrowserModule,
         RouterModule.forRoot([
             {path: 'home', component: HomeComponent},
-            {path:'users', component: UsersComponent}
+            {path: '', component: HomeComponent},
+            {path: 'users', component: UsersComponent}
         ])
     ],
     declarations: [
