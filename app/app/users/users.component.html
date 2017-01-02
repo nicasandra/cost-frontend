@@ -1,29 +1,25 @@
 <div class="container">
     <table style="margin-left:auto; margin-right:auto;margin-top:40px;">
         <tr>
-            <td class="td-cost"><input class="form-control" type="text" placeholder="name"></td>
-            <td class="td-cost"><input class="form-control" type="text" placeholder="value"></td>
+            <td class="td-cost"><input class="form-control" [(ngModel)]="cost.name" type="text"
+                                       placeholder="Cost name..."></td>
+            <td class="td-cost"><input class="form-control" [(ngModel)]="cost.value" type="text"
+                                       placeholder="Cost value..."></td>
             <td class="td-cost">
-                <select class="form-control" (change)="open(this.value);">
-                <option value="3">Category</option>
-                <option value="2">Category</option>
-                <option value="1">
-                    <span>dsfsdfds</span>
-                    <!--<button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">New category</button>-->
-                    <!--<div class="modal" id="modal-1">-->
-                        <!--<div class="modal-dialog">-->
-                            <!--<div class="modal-content">-->
-                                <!--<div class="modal-header">-->
-                                    <!--<button class="button" type="close" data-dismiss="modal">&times;</button>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                </option>
-            </select>
+                <select id="category-select" class="form-control"
+                        (change)="open($event.target.value);">
+                    <option disabled value="choose-category" selected hidden>Choose category</option>
+                    <option value="Category 1">Category 1</option>
+                    <option value="Category 2">Category 2</option>
+                    <option disabled>──────────────</option>
+                    <option value="new-category">Edit categories</option>
+                </select>
             </td>
-            <td class="td-cost"><input class="form-control" type="text" placeholder="details"></td>
-            <td><button class="btn btn-md btn-primary">Add</button></td>
+            <td class="td-cost"><input class="form-control" [(ngModel)]="cost.details" type="text"
+                                       placeholder="Cost details..."></td>
+            <td>
+                <button (click)="addCost($event)" class="btn btn-md btn-primary">Add</button>
+            </td>
         </tr>
 
     </table>
@@ -36,15 +32,58 @@
             <td><b>Details</b></td>
             <td><b>Actions</b></td>
         </tr>
-        <tr *ngFor="let user of users; let i=index">
-            <td>{{user.username}}</td>
-            <td>{{user.firstname}}</td>
-            <td>{{user.lastname}}</td>
-            <td>This is an ordinary cost..</td>
+        <tr *ngFor="let cost of costs; let i=index">
+            <td>{{cost.name}}</td>
+            <td>{{cost.category.name}}</td>
+            <td>{{cost.value}}</td>
+            <td>{{cost.details}}</td>
             <td>
                 <button class="btn btn-sm btn-primary">Edit</button>
-                <button (click)="delete(i)" class="btn btn-sm btn-primary">Delete {{i}}</button>
+                <button (click)="deleteCost(i)" class="btn btn-sm btn-primary">Delete {{i}}</button>
             </td>
         </tr>
     </table>
+</div>
+
+<!--Modal-->
+
+<div class="container">
+    <button style="display:none;" id="open-modal" type="button" class="btn btn-primary"
+            data-toggle="modal" data-target="#modal-1">New category
+    </button>
+    <div id="modal-1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div style="width:80%;margin-top:80px;margin-left:auto;margin-right:auto;"
+                 class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Manage categories</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="float: left; width: 80%; margin-left: 2%;">
+                        <input type="text"
+                               placeholder="Enter category name..."
+                               class="form-control"
+                               [(ngModel)]="category.name"
+                               name="new-category"/>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary" (click)="addCategory()">Add</button>
+                    </div>
+                    <div style="margin-top:10px;"><b>Your current categories</b>
+                        <ul style="margin-top:5px;width:95%;">
+                            <li *ngFor="let category of categories; let i=index"
+                                style="cursor:pointer; cursor:hand;">{{category.name}} &nbsp;
+                                <span class="glyphicon glyphicon-remove" (click)="deleteCategory(i)"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

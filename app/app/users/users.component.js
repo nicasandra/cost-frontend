@@ -9,26 +9,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var User_1 = require("../model/User");
+var Category_1 = require("../model/Category");
+var Cost_1 = require("../model/Cost");
 /**
  * Created by nicasandra on 12/16/2016.
  */
 var UsersComponent = (function () {
     function UsersComponent() {
-        this.user = new User_1.User(null, null, null, null, null, null, null);
-        this.users = [
-            new User_1.User(1, 'nickasandra', 'Nick', 'Casandra', '123456', '0732401175', new Date),
-            new User_1.User(2, 'ovgeorgescu', 'Ovidiu', 'Georgescu', '123456', '0732401175', new Date),
+        this.category = new Category_1.Category(null);
+        this.cost = new Cost_1.Cost(null, null, null, null);
+        this.selectedCategory = "c";
+        this.category1 = new Category_1.Category("Category 1");
+        this.costs = [
+            new Cost_1.Cost("Cost 1", 1000, this.category1, "Details 1")
+        ];
+        this.categories = [
+            new Category_1.Category("Food"),
+            new Category_1.Category("Drink")
         ];
     }
-    UsersComponent.prototype.delete = function (i) {
-        this.users.splice(i, 1);
+    UsersComponent.prototype.addCategory = function () {
+        this.categories.push(new Category_1.Category(this.category.name));
+        this.category.name = "";
     };
-    UsersComponent.prototype.addUser = function () {
-        this.users.push(new User_1.User(null, this.user.username, this.user.firstname, this.user.lastname, null, null, null));
+    UsersComponent.prototype.deleteCategory = function (index) {
+        this.categories.splice(index, 1);
     };
-    UsersComponent.prototype.open = function (value) {
-        alert(value);
+    UsersComponent.prototype.deleteCost = function (index) {
+        this.costs.splice(index, 1);
+    };
+    UsersComponent.prototype.addCost = function () {
+        if (this.selectedCategory != "new-category") {
+            this.costs.push(new Cost_1.Cost(this.cost.name, this.cost.value, new Category_1.Category(this.selectedCategory), this.cost.details));
+        }
+    };
+    UsersComponent.prototype.open = function (v) {
+        this.selectedCategory = v;
+        if (v === "new-category") {
+            document.getElementById("open-modal").click();
+            document.getElementById("category-select").value = "choose-category";
+        }
     };
     return UsersComponent;
 }());

@@ -1,5 +1,6 @@
 import {Component, Input} from "@angular/core";
-import {User} from "../model/User";
+import {Category} from "../model/Category";
+import {Cost} from "../model/Cost";
 /**
  * Created by nicasandra on 12/16/2016.
  */
@@ -10,24 +11,47 @@ import {User} from "../model/User";
 })
 
 export class UsersComponent {
-    user: User = new User(null, null, null, null, null, null, null);
-    users: Array<User> = [
-        new User(1, 'nickasandra', 'Nick', 'Casandra', '123456', '0732401175', new Date),
-        new User(2, 'ovgeorgescu', 'Ovidiu', 'Georgescu', '123456', '0732401175', new Date),
+    category: Category = new Category(null);
+    cost: Cost = new Cost(null, null, null, null);
+
+    selectedCategory = "c";
+
+    category1: Category = new Category("Category 1");
+
+    costs: Array<Cost> = [
+        new Cost("Cost 1", 1000, this.category1, "Details 1")
     ];
 
-    delete(i) {
-        this.users.splice(i, 1);
+    categories: Array<Category> = [
+        new Category("Food"),
+        new Category("Drink")
+    ];
+
+    addCategory() {
+        this.categories.push(new Category(this.category.name));
+        this.category.name = "";
     }
 
-
-    addUser() {
-        this.users.push(new User(null, this.user.username, this.user.firstname, this.user.lastname, null, null, null));
+    deleteCategory(index) {
+        this.categories.splice(index, 1);
     }
 
-    open(value){
-        alert(value);
+    deleteCost(index) {
+        this.costs.splice(index, 1);
     }
 
+    addCost() {
+        if (this.selectedCategory != "new-category") {
+            this.costs.push(new Cost(this.cost.name, this.cost.value, new Category(this.selectedCategory), this.cost.details));
+        }
+    }
+
+    open(v) {
+        this.selectedCategory = v;
+        if (v === "new-category") {
+            document.getElementById("open-modal").click();
+            (<HTMLInputElement>document.getElementById("category-select")).value = "choose-category";
+        }
+    }
 
 }
